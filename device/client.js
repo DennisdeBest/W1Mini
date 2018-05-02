@@ -14,31 +14,52 @@ board = new five.Board({
 board.on('ready', function () {
   console.log('READY!')
 
+  //Wemos D1 mini pins with corresponding Arduino pins
+  let d = {
+    0: 1,
+    1: 5,
+    2: 4,
+    3: 0,
+    4: 2,
+    5: 14,
+    6: 12,
+    7: 13,
+    8: 15,
+  }
+
   // init a led on pin 2, strobe every 1000ms
-  let led1 = new five.Led(1)
+  let led1 = new five.Led(d['3']);
+
+  let leds = new five.Leds([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17])
+  leds.off()
+  led1.off()
+  setTimeout(function () {
+         led1.on();
+       }, 1000)
+
   let led2 = new five.Led(2);
   //led1.blink(500);
   //led2.blink(750);
 
-  let leds = new five.Leds([0,1,2,3,4,5,6,7,8])
-  leds.off()
 
-  for(let i = 0; i < leds.length; i++) {
-    setTimeout(function () {
-      console.log(i)
-      leds[i].on();
-    }, 5000 * i)
-    leds[i].off();
-  }
+
+  // for(let i = 0; i < leds.length; i++) {
+  //   setTimeout(function () {
+  //     console.log(i)
+  //     leds[i].on();
+  //   }, 2000 * i)
+  //   leds[i].off();
+  // }
+  // d['0']
   // setup a standard servo, center at start
   servo = new five.Servo({
-    pin: 6,
+    pin: d['2'],
     range: [0, 180],
     type: 'standard',
     center: true
   })
 
-  servo.to(10)
+  servo.to(180)
 
 
   // poll this sensor every second

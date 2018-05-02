@@ -26,12 +26,29 @@ var board = new five.Board({
     repl: false
 });
 
+//Corresponding pins on the wemos d1 mini and the johnny five library
+//Instead of selecting the pin like five.Led(2) to use the pin D2 ont the mini
+//you can select the correct pin with five.Led(d['2'])
+  let d = {
+    0: 1,
+    1: 5,
+    2: 4,
+    3: 0,
+    4: 2,
+    5: 14,
+    6: 12,
+    7: 13,
+    8: 15,
+  }
+
 board.on("ready", function() {
     console.log("READY!");
     var led = new five.Led(2);
     led.blink(500);
 });
 ````
+
+
 
 Now you can try [code examples for Johhny Five](http://johnny-five.io/examples/).
 
