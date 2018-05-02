@@ -5,11 +5,12 @@
 * [Socket.IO](http://socket.io/) + [Socket.IO - Node.js Client](https://github.com/socketio/socket.io-client)
 
 ## Requirements
-First install [Node.js](https://nodejs.org/) and follow [instructions](https://www.wemos.cc/tutorial/get-started-arduino.html) for installing the newest hardware package **using git** for WeMos D1. [Here](https://www.arduino.cc/en/Main/Software) you can download Arduino 1.6.8 or higher. [(PL only) [tutaj](http://majsterkowo.pl/arduino-na-ubuntu-linux/) znajdziesz opis instalacji Arduino po polsku)]. You need at least v2.2.0 of [ESP8266 Core](https://github.com/esp8266/Arduino).
+run npm install
 
-Then install newest Firmata from master branch from [git repository](https://github.com/firmata/arduino). Now you can configure `wifiConfig.h` and upload [StandardFirmataWiFi](https://github.com/firmata/arduino/tree/master/examples/StandardFirmataWiFi) to your WeMos D1 in Arduino IDE.
+Install nodeJS. Then add the wemos d1 mini to the arduino software : 
+Follow the instructions [here](https://github.com/esp8266/Arduino)
 
-[Here's a simple firmata.js client example with additional instructions](https://gist.github.com/soundanalogous/31a43d9c72ec6fbdf9631cfbe635d625) (remember to install dependencies by using command `npm install firmata etherport-client --save`).
+Next upload the fimata wifi firmare to the D1 mini, instructions [here](https://projetsdiy.fr/esp8266-johnny-five-blynk-firmata-wifi/#Installer_le_firmware_StandardFirmataWiFi_sur_l8217ESP8266)
 
 If everything was done well, you can check simple J5 code (remember to install dependencies by using command `npm install johnny-five etherport-client --save`):
 ```javascript
