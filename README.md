@@ -28,22 +28,22 @@ var board = new five.Board({
 
 //Corresponding pins on the wemos d1 mini and the johnny five library
 //Instead of selecting the pin like five.Led(2) to use the pin D2 ont the mini
-//you can select the correct pin with five.Led(d['2'])
-  let d = {
-    0: 1,
-    1: 5,
-    2: 4,
-    3: 0,
-    4: 2,
-    5: 14,
-    6: 12,
-    7: 13,
-    8: 15,
-  }
+//you can select the correct pin with five.Led(w1.d2)
+let w1 = {
+  d0: 1,
+  d1: 5,
+  d2: 4,
+  d3: 0,
+  d4: 2,
+  d5: 14,
+  d6: 12,
+  d7: 13,
+  d8: 15,
+}
 
 board.on("ready", function() {
     console.log("READY!");
-    var led = new five.Led(2);
+    var led = new five.Led(w1.d2);
     led.blink(500);
 });
 ````

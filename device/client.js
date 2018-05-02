@@ -11,31 +11,33 @@ board = new five.Board({
   repl: false
 })
 
+let w1 = {
+  d0: 1,
+  d1: 5,
+  d2: 4,
+  d3: 0,
+  d4: 2,
+  d5: 14,
+  d6: 12,
+  d7: 13,
+  d8: 15,
+}
+
 board.on('ready', function () {
   console.log('READY!')
 
   //Wemos D1 mini pins with corresponding Arduino pins
-  let d = {
-    0: 1,
-    1: 5,
-    2: 4,
-    3: 0,
-    4: 2,
-    5: 14,
-    6: 12,
-    7: 13,
-    8: 15,
-  }
+
 
   // init a led on pin 2, strobe every 1000ms
-  let led1 = new five.Led(d['3']);
+  led = new five.Led(w1.d2);
 
   let leds = new five.Leds([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17])
   leds.off()
-  led1.off()
-  setTimeout(function () {
-         led1.on();
-       }, 1000)
+  // led1.off()
+  // setTimeout(function () {
+  //        led1.on();
+  //      }, 1000)
 
   let led2 = new five.Led(2);
   //led1.blink(500);
@@ -53,7 +55,7 @@ board.on('ready', function () {
   // d['0']
   // setup a standard servo, center at start
   servo = new five.Servo({
-    pin: d['2'],
+    pin: w1.d3,
     range: [0, 180],
     type: 'standard',
     center: true
@@ -77,7 +79,7 @@ socket.on('news', function (data) {
 socket.on('ledSignal', function (data) {
   console.log(data)
   if (board.isReady) {
-    //led.strobe(data.delay);
+    led1.strobe(data.delay);
   }
 })
 socket.on('servo', function (data) {
