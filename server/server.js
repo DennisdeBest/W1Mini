@@ -31,6 +31,11 @@ io.sockets.on('connection', function (socket) {
     console.log(delay)
     io.sockets.emit('ledSignal', {delay})
   })
+  socket.on('digit', function (data) {
+    var digit = data.digit
+    console.log(digit)
+    io.sockets.emit('digit', {digit})
+  })
   socket.on('servo', function (data) {
     var delay = data.delay
     console.log(delay)

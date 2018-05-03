@@ -29,6 +29,10 @@
       <p><input type="text" class="form-control" id="ledDelay" name="ledDelay" value="1000" /></p>
       <p><button id="ledSet" class="btn btn-primary">Set Delay</button></p>
 
+        <h4>Digit</h4>
+        <p><input type="text" class="form-control" id="digitValue" name="digitValue" value="1" /></p>
+        <p><button id="digitSet" class="btn btn-primary">Set digit</button></p>
+
         <h4>Servo</h4>
         <p><input type="text" class="form-control" id="servo" name="servo" value="1000" /></p>
         <p><button id="servoSet" class="btn btn-primary">Set servo</button></p>
@@ -39,9 +43,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
     <script>
-
       var socket = io.connect('http://localhost:8080');
 
       socket.on('news', function (data) {
@@ -52,10 +55,19 @@
         console.log("LED Delay ",data.delay," emitted from server to device");
       });
 
+      socket.on('digit', function (data) {
+        console.log("Digit set to ", data.digit)
+      });
+
       $('#ledSet').on('click',function(){
         var tmp = parseInt($('#ledDelay').val(),10);
         console.log("Setting LED Delay:",tmp)
         socket.emit('ledWeb',{delay:tmp});
+      });
+      $('#digitSet').on('click',function(){
+        var digit = parseInt($('#digitValue').val(),10);
+        console.log("Setting digit :",digit)
+        socket.emit('digit',{digit:digit});
       });
 
       $('#servoSet').on('click',function(){
